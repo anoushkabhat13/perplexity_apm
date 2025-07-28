@@ -22,7 +22,10 @@ const textContainerStyles = {
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-  gap: "1.0rem", // spacing between words
+  justifyContent: "center",
+  flexWrap: "wrap", // <-- key for responsiveness!
+  gap: "1rem",
+  textAlign: "center",
 };
 
 const wordStyles = {
