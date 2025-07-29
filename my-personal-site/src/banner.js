@@ -36,6 +36,9 @@ const searchBarStyles = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  maxWidth: "90vw", // restricts width on small screens
+  textAlign: "center",
+  flexWrap: "wrap",
   margin: "2rem auto",
   padding: "1rem 1.5rem",
   borderRadius: "1rem",
