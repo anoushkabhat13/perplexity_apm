@@ -50,15 +50,26 @@ export default function ExceptionalTalent() {
   const styles = {
     page: {
       display: 'flex',
-      padding: '3rem',
+      flexDirection: 'column',
+      minHeight: '100vh',   // Ensures it covers the entire viewport vertically
+      minWidth: '100vw',    // Ensures it covers the entire viewport horizontally
+      width: '100vw',
+      height: '100vh',
       fontFamily: 'sans-serif',
       background: '#fefefe',
       color: '#111',
+      flexWrap: 'wrap',
+      margin: 0,
+      padding: 0,           // Remove or reduce padding if needed
+      boxSizing: 'border-box',
     },
+    
     content: {
-      flex: 3,
-      maxWidth: '800px',
-      paddingRight: '2rem',
+      flex: 1,
+      width: '100%',
+      maxWidth: '100vw',    // Remove this if you want truly edge-to-edge content
+      padding: '3rem',      // Adjust/remove padding as needed
+      boxSizing: 'border-box',
     },
     title: {
       fontSize: '2rem',
@@ -83,7 +94,7 @@ export default function ExceptionalTalent() {
     sidebar: {
       flex: 1,
       background: '#fafaf9',
-      padding: '1.5rem',
+      padding: '0rem',
       borderLeft: '1px solid #e4e4e7',
       height: 'fit-content',
     },

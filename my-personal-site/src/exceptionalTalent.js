@@ -1,10 +1,51 @@
 import Layout from "./layout";
+import React, { useEffect } from "react";
 
 export default function ExceptionalTalent() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const styleTag = document.createElement("style");
+      styleTag.innerHTML = `
+        @media (max-width: 768px) {
+          .responsive-page {
+            flex-direction: column !important;
+            padding: 1rem !important;
+            width: 100% !important;
+          }
+          .responsive-content {
+            padding-right: 0 !important;
+            max-width: 100% !important;
+            width: 100% !important;
+          }
+          .responsive-sidebar {
+            width: 100% !important;
+            border-left: none !important;
+            border-top: 1px solid #e4e4e7 !important;
+            margin-top: 2rem !important;
+            align-items: center !important;
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+          }
+          .responsive-sidebar img {
+            max-width: 100% !important;
+            height: auto !important;
+          }
+        }
+      `;
+      document.head.appendChild(styleTag);
+  
+      return () => {
+        document.head.removeChild(styleTag);
+      };
+    }
+  }, []);
+  
     return (
+
+    
       <Layout>
-      <div style={styles.page}>
-        <div style={styles.content}>
+      <div style={styles.page} className="responsive-page">
+        <div style={styles.content} className="responsive-content">
           <h1 style={styles.title}>Exception Talent → Self-Starter: Henna with a Heart</h1>
           <p style={styles.summary}>
             A deep dive into how Anoushka transformed her talent in henna art into one of the most successful creative clubs at UCLA.
@@ -99,7 +140,7 @@ export default function ExceptionalTalent() {
           </div>
         </div>
         {/* Sidebar with images */}
-        <div style={styles.sidebar}>
+        <div style={styles.sidebar} className="responsive-sidebar">
           <h2 style={styles.sidebarTitle}>Snapshots</h2>
           <div style={styles.sidebarImages}>
             <img src="/images/h1.png" alt="Henna 1" style={styles.sidebarImage} />
@@ -116,10 +157,12 @@ export default function ExceptionalTalent() {
   const styles = {
     page: {
       display: 'flex',
+      flexDirection: 'row',
       padding: '3rem',
       fontFamily: 'sans-serif',
       background: '#fefefe',
       color: '#111',
+      flexWrap: 'wrap', // enable wrapping for smaller screens
     },
     content: {
       flex: 3,
@@ -153,6 +196,7 @@ export default function ExceptionalTalent() {
       borderLeft: '1px solid #e4e4e7',
       height: 'fit-content',
       display: 'flex',
+      flexWrap: 'wrap', 
       flexDirection: 'column', // stack images vertically
       alignItems: 'flex-start', // align images to the left
     },
