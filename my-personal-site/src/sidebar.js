@@ -2,35 +2,35 @@ import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import discoverImage from "./perplexity_discover.png";
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, setIsOpen }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [isOpen, setIsOpen] = useState(window.innerWidth > 768); // open by default on desktop
 
   useEffect(() => {
     const handleResize = () => {
-      const isNowMobile = window.innerWidth <= 768;
-      setIsMobile(isNowMobile);
-      setIsOpen(!isNowMobile); // open on desktop, closed on mobile
+      const nowMobile = window.innerWidth <= 768;
+      setIsMobile(nowMobile);
     };
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+
   const sidebarStyles = {
-    width: '245px',
+    width: '180px',
     padding: '2rem 1rem',
     background: '#fafaf9',
     borderRight: '1px solid #e4e4e7',
-    display: isOpen ? 'flex' : 'none',
     flexDirection: 'column',
     minHeight: '100vh',
     position: 'fixed',
-    left: 0,
+    left: isOpen ? '0' : '-200px', // ⬅️ slide it off screen
     top: 0,
     zIndex: 1000,
+    transition: 'left 0.3s ease',
+    display: 'flex',
   };
-
+  
   const toggleButtonStyles = {
     position: 'fixed',
     top: '1rem',
